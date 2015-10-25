@@ -140,7 +140,7 @@ include("conexion_login.php");
 					//EJECUTA QUERY
 					$inserccion->execute() or die("Error: Problemas al ingresar datos del logeo de la empresa");
 					//SE BUSCA EL ULTIMO ID INGRESADO
-					$Id_info_basica_e = $con->lastInsertId();
+					$Id_login = $con->lastInsertId();
 					//vacia variable de inserccion
 					$inserccion = null;
 					//COMMIT ESPARA INDICAR HASTA QUE PARTE TERMINARA EL QUERY

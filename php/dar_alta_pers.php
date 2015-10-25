@@ -10,6 +10,8 @@ include("conexion_login.php");
 
 
 		//creacion de variables
+		$Id_tipo_usuario = 2;
+
 		//DATOS PERSONALES
 		$username 			= $_POST['username'];
 		$password 			= $_POST['password'];
@@ -360,7 +362,7 @@ include("conexion_login.php");
 					//se guarda cuantos trabajos tuvo, se enteinde que es un jefe por un trabajo
 					$numero_trabajos = count($jefe_t);
 					//ciclo for para la inserccion de jefes
-					for ($i=0; $i < $numero_jefes ; $i++) { 
+					for ($i=0; $i < $numero_trabajos ; $i++) { 
 						$query = "INSERT INTO jefes (nombre,
 													comentarios) VALUES (?,?)";
 						$inserccion = $con->prepare($query);
@@ -373,7 +375,7 @@ include("conexion_login.php");
 						$inserccion = null;
 						//TENER PENDIENTE
 						$query = "INSERT INTO trabajos_anteriores (nombre,
-																	años,
+																	anios,
 																	direccion,
 																	numero,
 																	puesto,
@@ -383,16 +385,16 @@ include("conexion_login.php");
 																	Id_persona) VALUES (?,?,?,?,?,?,?,?,?)";
 						$inserccion = $con->prepare($query);
 						$inserccion->bindParam(1,$nombre_t[$i], PDO::PARAM_STR);
-						$inserccion->bindParam(2,$anios_t[$i], PDO::PARAM_STR);
+						$inserccion->bindValue(2,$anios_t[$i], PDO::PARAM_INT);
 						$inserccion->bindParam(3,$direccion_t[$i], PDO::PARAM_STR);
 						$inserccion->bindParam(4,$numero_t[$i], PDO::PARAM_STR);
 						$inserccion->bindParam(5,$puesto_t[$i], PDO::PARAM_STR);
-						$inserccion->bindParam(6,$sueldo_t[$i], PDO::PARAM_STR);
+						$inserccion->bindValue(6,$sueldo_t[$i], PDO::PARAM_INT);
 						$inserccion->bindParam(7,$motivo_separacion_t[$i], PDO::PARAM_STR);
-						$inserccion->bindParam(8,$Id_jefe[$i], PDO::PARAM_STR);
+						$inserccion->bindParam(8,$Id_jefe, PDO::PARAM_STR);
 						$inserccion->bindParam(9,$Id_persona, PDO::PARAM_STR);
 
-						$inserccion->execute() or die ("Error: Problemas la insertar jefe");
+						$inserccion->execute() or die ("Error: Problemas la insertar trabajo anterior");
 
 						//$Id_trabajo_anterior = $con->lastInsertId();
 						$inserccion = null;
@@ -409,20 +411,16 @@ include("conexion_login.php");
 				//NUEVO DE ESTUDIOS QUE SE TIENEN
 				$numero_estudios = count($nivel_e);
 				for ($i=0; $i < $numero_estudios ; $i++) { 
-					$query = "INSERT INTO estudios (nivel,
-												nombre, 
-												titulo, 
-												años,
-												Id_persona) VALUES (?,?,?,?,?)";
+					$query = "INSERT INTO estudios(nivel, nombre, titulo, anios, Id_persona) VALUES (?,?,?,?,?)";
 					$inserccion = $con->prepare($query);
 					$inserccion->bindParam(1,$nivel_e[$i], PDO::PARAM_STR);
 					$inserccion->bindParam(2,$nombre_e[$i], PDO::PARAM_STR);
 					$inserccion->bindParam(3,$titulo_e[$i], PDO::PARAM_STR);
-					$inserccion->bindParam(4,$anios_e[$i], PDO::PARAM_STR);
+					$inserccion->bindValue(4,$anios_e[$i], PDO::PARAM_STR);
 					$inserccion->bindParam(5,$Id_persona, PDO::PARAM_STR);
 					
 
-					$inserccion->execute() or die ("Error: Problemas al guardar estudios".print_r($con->errorInfo()));
+					$inserccion->execute() or die ("Error: Problemas al guardar estudios");
 
 					//$Id_estudio = $con->lastInsertId();
 					$inserccion = null;
@@ -451,23 +449,29 @@ include("conexion_login.php");
 					//$Id_referencia = $con->lastInsertId();
 					$inserccion = null;
 				}
-				//TERMINA REFERENCIAS
-
-				$numero_documentos = count($documentos);
-				for ($i=0; $i < $numero_documentos ; $i++) { 
-					$query = "INSERT INTO documentos_extra (documento,
-															Id_persona) VALUES (?,?)";
-					$inserccion = $con->prepare($query);
-					$inserccion->bindParam(1,$curriculum, PDO::PARAM_STR);
-					$inserccion->bindParam(2,$Id_persona, PDO::PARAM_STR);
-
+				$query = "INSERT INTO login (username, 
+											password, 
+											correo, 
+											Id_tipo_usuario, 
+											Id_persona) VALUES (?,?,?,?,?)";
+				$inserccion = null;
+				//PREPARA QUERY
+				$inserccion = $con->prepare($query);
+				//CAMBIA LOS VALORES DE LOS ? POR LAS VARIABLES
+				$inserccion->bindParam(1,$username, PDO::PARAM_STR);
+				$inserccion->bindParam(2,$pass, PDO::PARAM_STR);
+				$inserccion->bindParam(3,$correo, PDO::PARAM_STR);
+				$inserccion->bindParam(4,$Id_tipo_usuario, PDO::PARAM_STR);
+				$inserccion->bindParam(5,$Id_persona, PDO::PARAM_STR);
+				//EJECUTA QUERY
+				$inserccion->execute() or die("Error: Problemas al ingresar datos del logeo del usuario");
+				//SE BUSCA EL ULTIMO ID INGRESADO
+				$Id_login = $con->lastInsertId();
+				//vacia variable de inserccion
+				$inserccion = null;
+				//COMMIT ESPARA INDICAR HASTA QUE PARTE TERMINARA EL QUERY
 					
 
-					$inserccion->execute() or die ("Error: Problemas al guardar documentos extra");
-
-					//$Id_documento_extra = $con->lastInsertId();
-					$inserccion = null;
-				}
 				
 
 				$con->commit();
