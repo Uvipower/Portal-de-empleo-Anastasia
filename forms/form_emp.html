@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
+	
+</head>
+<body>
+	<h1>Empresa!</h1>
+
+	<form action="" method="POST" name="form_emp" id="form_emp" autocomplete="off">
+		<label for="nombre">Nombre de la empresa</label>
+		<input type="text" name="nombre" id="nombre" required>
+
+		<label for="logotipo">Logotipo</label>
+		<input type="file" name="logotipo" id="logotipo" required>
+
+		
+
+		<br>
+
+		<label for="username">Usuario</label>
+		<input type="text" name="username" id="username" required>
+		
+		<label for="password">Contraseña</label>
+		<input type="password" name="password" id="password" required>
+
+		<label for="password2">Repetir contraseña</label>
+		<input type="password" name="password2" id="password2" required>
+
+		<label for="correo">Correo</label>
+		<input type="email" name="correo" id="correo" required>
+
+		<br>
+
+		<h4>Informacion basica</h4>
+
+		<label for="estado">Estado</label>
+        <select name = "estado" required>
+            <option value="" disabled selected>Estado</option>
+        	<option value = "Aguascalientes">Aguascalientes</option>
+        	<option value = "Baja Californa">Baja Californa</option>
+        	<option value = "Baja Californa Sur">Baja Californa Sur</option>
+        	<option value = "Campeche">Campeche</option>
+        	<option value = "Chiapas">Chiapas</option>
+        	<option value = "Chihuahua">Chihuahua</option>
+        	<option value = "Coahuila">Coahuila</option>
+        	<option value = "Colima<">Colima</option>
+        	<option value = "Distrito Federeal">Distrito Federeal</option>
+        	<option value = "Durango">Durango</option>
+        	<option value = "Estado de México">Estado de México</option>
+        	<option value = "Guanajuato">Guanajuato</option>
+        	<option value = "Guerrero">Guerrero</option>
+        	<option value = "Hidalgo">Hidalgo</option>
+        	<option value = "Jalisco">Jalisco</option>
+        	<option value = "Michoacán">Michoacán</option>
+        	<option value = "Morelos">Morelos</option>
+        	<option value = "Nayarit">Nayarit</option>
+        	<option value = "Nuevo León">Nuevo León</option>
+        	<option value = "Oaxaca">Oaxaca</option>
+        	<option value = "Puebla">Puebla</option>
+        	<option value = "Querétaro">Querétaro</option>
+        	<option value = "Quintana Roo">Quintana Roo</option>
+        	<option value = "San Luis Potosí">San Luis Potosí</option>
+        	<option value = "Sinaloa">Sinaloa</option>
+        	<option value = "Sonora">Sonora</option>
+        	<option value = "Tabasco">Tabasco</option>
+        	<option value = "Tamaulipas">Tamaulipas</option>
+        	<option value = "Tlaxcala">Tlaxcala</option>
+        	<option value = "Veracruz">Veracruz</option>
+        	<option value = "Yucatán">Yucatán</option>
+        	<option value = "Zacatecas">Zacatecas</option>
+		</select>
+
+
+		<label for="ciudad">Ciudad</label>
+		<input type="text" name = "ciudad" id = "ciudad" required>
+
+		<br>
+
+		<label for="direccion">Direccion</label>
+		<input type="text" name="direccion" id="direccion" required>
+
+		<label for="numero">Numero telefonico</label>
+		<input type="text" name="numero" id="numero" required>
+		
+
+		<br>
+
+		<label for="razon_social">Razon social</label>
+		<input type="text" name="razon_social" id="razon_social" required>
+
+		<label for="giro">Giro de la empresa</label>
+		<input type="text" name="giro" id="giro" required>
+
+		<label for="fundacion">Fundada desde:</label>
+		<input type="date" name="fundacion" id="fundacion" required>
+
+		<br>
+
+		<h4>Responsable</h4>
+
+		<label for="nombre_r">Nombre</label>
+		<input type="text" name="nombre_r" id="nombre_r" required>
+
+		<label for="correo_r">Correo electronico</label>
+		<input type="email" name="correo_r" id="correo_r" required>
+		
+		<br>
+		
+		<label for="numero_r">Numero celular</label>
+		<input type="text" name="numero_r" id="numero_r" required>
+
+		<label for="puesto_r">Puesto</label>
+		<input type="text" name="puesto_r" id="puesto_r" required>
+
+		<br>
+
+		<button id="boton_ingreso_empresa" type="submit">Dar de alta</button>
+    	<button type="reset">Restablecer todo</button>
+	</form>
+
+
+
+	
+
+	
+</body>
+
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+
+<script type="text/javascript" src="../js/scripts.js"></script>
+
+</html>

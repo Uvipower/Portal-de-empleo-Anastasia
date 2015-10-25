@@ -1,0 +1,42 @@
+body{
+	/*padding-top: 40px;
+	padding-bottom: 40px;*/
+	/*background: url(../images/picjumbo.jpg)no-repeat fixed center;
+	background-size: 1500px auto;*/
+	background: url(../images/picjumbo.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+.login{
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+#sha{
+	/*margin-top: 80px;*/
+	max-width: 340px;
+	-webkit-box-shadow: 0px 0px 18px 0px rgba(48,50,50,0.48);
+	-moz-box-shadow: 0px 0px 18px 0px rgba(48,50,50,0.48);
+	box-shadow: 0px 0px 18px 0px rgba(48,50,50,0.48);
+	border-radius: 6%;
+}
+#avatar{
+	width: 96px;
+	height: 96px;
+	margin: 0px auto 10px;
+	display: block;
+	border-radius: 50%;
+}
+#logo{
+	padding-top: 5px;
+	width: 75px;
+	margin: 0px auto 0px;
+	display: block;
+}
+.texto1{
+	color: white;
+	text-shadow:5px 5px 7px rgba(0,0,0,1);
+}
