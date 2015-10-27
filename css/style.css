@@ -2,20 +2,13 @@ body{
 	/*padding-top: 40px;
 	padding-bottom: 40px;*/
 	/*background: url(../images/picjumbo.jpg)no-repeat fixed center;
-	background-size: 1500px auto;
+	background-size: 1500px auto;*/
 	background: url(../images/picjumbo.jpg) no-repeat fixed center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;*/
-
-}
-main{
-	background: url(../images/sesion.jpg) no-repeat fixed center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
+
 }
 .login{
 	max-width: 330px;
@@ -36,6 +29,12 @@ main{
 	margin: 0px auto 10px;
 	display: block;
 	border-radius: 50%;
+}
+#logo{
+	padding-top: 5px;
+	width: 75px;
+	margin: 0px auto 0px;
+	display: block;
 }
 .texto1{
 	color: white;

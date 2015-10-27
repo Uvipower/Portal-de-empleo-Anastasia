@@ -241,8 +241,8 @@
 
 	//CODIGOS POSTALES INDEX PERSONA
 
-	function verificar_cp(){
-		var cp = $("#cp").val(); //SE TOMA EL VALOR QUE ESTA EN EL INPUT
+	function json(){
+		var cp = $("#codigo_postal").val(); //SE TOMA EL VALOR QUE ESTA EN EL INPUT
 		$.getJSON(
 		'https://api-codigos-postales.herokuapp.com/codigo_postal/'+cp, //se hace llamada a la pagina
 
@@ -256,15 +256,14 @@
 						console.log(i+" -> " +valor.codigo_postal + ", "+valor.colonia); //mostramos en consola
 						//creacion de los options
 						$('#colonias').last().append("<option value="+valor.colonia+">"+valor.colonia+"</option>");
-					//al input de ciudad le anexa el valor de desactivado
-					$("#ciudad").val(valor.municipio).prop("disabled",true);
-
+					//al input de municipio le anexa el valor de desactivado
+					$("#municipio").val(valor.municipio).prop("disabled",true);
 					$("#estado").val(valor.estado).prop("disabled",true);
-
 					});
-				}
+					//esto esta de mas
+					$("#cp").html(cp);
+				};
 			}
 		);
-		return false;
 	}
 	//TERMINA INDEX PERSONA
