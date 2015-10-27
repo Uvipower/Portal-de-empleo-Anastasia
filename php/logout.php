@@ -5,5 +5,5 @@
   	session_destroy();
 
   	//redirecciona a la pagina
-	header('Location: ../index.html'); 
+	header('Location: ../login.php'); 
 ?>

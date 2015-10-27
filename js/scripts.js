@@ -230,3 +230,40 @@
 		        });
 	});
   //TERMINA FORMULARIO DE EMPRESA
+
+  //INDEX PERSONA
+  	$(document).ready(function(){
+		$("#busqueda").autocomplete({
+			source: "../php/busqueda.php", //pagina donde se mandara la consulta
+			minLength: 1  //tamaño de la cadena
+		});
+	});
+
+	//CODIGOS POSTALES INDEX PERSONA
+
+	function json(){
+		var cp = $("#codigo_postal").val(); //SE TOMA EL VALOR QUE ESTA EN EL INPUT
+		$.getJSON(
+		'https://api-codigos-postales.herokuapp.com/codigo_postal/'+cp, //se hace llamada a la pagina
+
+			function(data){
+				var json = eval(data); //se convierte en json 
+				if (json != false) { //si la consulta tiene algo
+					//remueve todos los option que llegaron a tener algo
+					$("option").remove();
+					//ciclo para extraer todos los datos
+					$.each(json, function(i,valor){
+						console.log(i+" -> " +valor.codigo_postal + ", "+valor.colonia); //mostramos en consola
+						//creacion de los options
+						$('#colonias').last().append("<option value="+valor.colonia+">"+valor.colonia+"</option>");
+					//al input de municipio le anexa el valor de desactivado
+					$("#municipio").val(valor.municipio).prop("disabled",true);
+					$("#estado").val(valor.estado).prop("disabled",true);
+					});
+					//esto esta de mas
+					$("#cp").html(cp);
+				};
+			}
+		);
+	}
+	//TERMINA INDEX PERSONA
