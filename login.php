@@ -5,8 +5,10 @@
 	<title>Iniciar Sesión</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/navbar-style.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
 
 
 </head>
@@ -20,33 +22,13 @@
 	</div>-->
 	<header>
 <!-- ============================= Barra de Navegacion============================ -->
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#contenido">
-					<span class="sr-only"> Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="#" class="pull-left"><img src="images/logo.png" alt="Anastasia" class="img-responsive" id="logo"></a>
-				<a class="navbar-brand" href="#">Anastasia</a>
-			</div>
-			<div class="collapse navbar-collapse" id="contenido">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">Iniciar Sesión</a></li>
-					<li><a href="#">Registrarse</a></li>
-					<li><a href="#">Acerca</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
+		<?php include("head-footer/navbar-inicio.php");?>
 	</header>
 	<main>
 
 <!-- ===================== Cuerpo de la pagina ========================== -->
 	<div class="container">
+		<br><br><br>
 		<h1 class="text-center texto1">Bienvenido</h1>
 		<br>
 		<h4 class="text-center"><p class="texto1">Asegurate de introducir tus datos correctamente <br> para que no tengas problemas para iniciar sesión</p></h4>
@@ -79,7 +61,10 @@
 	<br>
 	</main>
 <!-- ======================= Pie de Pagina ============================= -->
-<footer class="container-fluid well">
+<div class="container">
+	<?php include("head-footer/footer-inicio.php"); ?>
+</div>
+<!--<footer class="container-fluid well">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 col-lg-offset-3">
 			<small class="pull-left">
@@ -90,7 +75,7 @@
 			</small>
 		</div>
 	</div>
-</footer>
+</footer>-->
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/scripts.js"></script>

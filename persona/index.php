@@ -38,7 +38,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
 	<select name="colonias" id="colonias">
 		<option value="" selected disabled>Colonias</option>
 	</select>
-	<button onclick="json();">JSON</button>
+	<button onclick="verificar_cp();">JSON</button>
 	
 
 	<a href="../php/logout.php">Cerrar sesion</a>

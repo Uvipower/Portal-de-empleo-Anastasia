@@ -297,62 +297,28 @@
 		<h4>Domicilio</h4>
 
 
-		<label for="estado">Estado</label>
-        <select name = "estado">
-            <option value="" disabled selected>Estado</option>
-        	<option value = "Aguascalientes">Aguascalientes</option>
-        	<option value = "Baja Californa">Baja Californa</option>
-        	<option value = "Baja Californa Sur">Baja Californa Sur</option>
-        	<option value = "Campeche">Campeche</option>
-        	<option value = "Chiapas">Chiapas</option>
-        	<option value = "Chihuahua">Chihuahua</option>
-        	<option value = "Coahuila">Coahuila</option>
-        	<option value = "Colima<">Colima</option>
-        	<option value = "Distrito Federeal">Distrito Federeal</option>
-        	<option value = "Durango">Durango</option>
-        	<option value = "Estado de México">Estado de México</option>
-        	<option value = "Guanajuato">Guanajuato</option>
-        	<option value = "Guerrero">Guerrero</option>
-        	<option value = "Hidalgo">Hidalgo</option>
-        	<option value = "Jalisco">Jalisco</option>
-        	<option value = "Michoacán">Michoacán</option>
-        	<option value = "Morelos">Morelos</option>
-        	<option value = "Nayarit">Nayarit</option>
-        	<option value = "Nuevo León">Nuevo León</option>
-        	<option value = "Oaxaca">Oaxaca</option>
-        	<option value = "Puebla">Puebla</option>
-        	<option value = "Querétaro">Querétaro</option>
-        	<option value = "Quintana Roo">Quintana Roo</option>
-        	<option value = "San Luis Potosí">San Luis Potosí</option>
-        	<option value = "Sinaloa">Sinaloa</option>
-        	<option value = "Sonora">Sonora</option>
-        	<option value = "Tabasco">Tabasco</option>
-        	<option value = "Tamaulipas">Tamaulipas</option>
-        	<option value = "Tlaxcala">Tlaxcala</option>
-        	<option value = "Veracruz">Veracruz</option>
-        	<option value = "Yucatán">Yucatán</option>
-        	<option value = "Zacatecas">Zacatecas</option>
-		</select>
+		<label for="cp">Codigo postal</label>
+		<input type="search" name="cp" id="cp" class="auto">
+		<input type="button" value="Verificar" onclick="verificar_cp();"/>
+		
 
+	
+		<br>
+
+		<label for="estado">Estado</label>
+		<input type="text" name="estado" id="estado" placeholder="Estado"/>
 		<br>
 
 		<label for="ciudad">Ciudad</label>
-		<input type="text" name = "ciudad" id = "ciudad">
+		<input type="text" name="ciudad" id="ciudad" placeholder="Ciudad"/>
 
+		<select name="colonias" id="colonias">
+			<option value="" selected disabled>Colonias</option>
+		</select>
 		<br>
 
 		<label for="direccion">Direccion</label>
 		<input type="text" name = "direccion" id = "direccion">
-
-		<br>
-
-		<label for="colonia">Colonia</label>
-		<input type="text" name = "colonia" id = "colonia">
-
-		<br>
-
-		<label for="cp">Codigo postal</label>
-		<input type="text" name = "cp" id = "cp">
 
 		<br>
 
