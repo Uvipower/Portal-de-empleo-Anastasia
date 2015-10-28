@@ -8,7 +8,8 @@ include("conexion_login.php");
 		isset($_POST['password']) 		&& !empty($_POST['password']))
 	{
 
-
+		//TIMESTAMP;
+		$timestamp = date("Y-m-d H:i:s");
 		//creacion de variables
 		$Id_tipo_usuario = 2;
 
@@ -193,7 +194,7 @@ include("conexion_login.php");
 			
 
 			//FOTOGRAFIA
-			//$fotografia			= $_POST['fotografia'];
+			$fotografia			= 0;
 			//TERMINA FOTOGRAFIA
 
 
@@ -335,16 +336,18 @@ include("conexion_login.php");
 												Id_documentacion, 
 												Id_datos_personales, 
 												Id_datos_generales,
-												Id_economia) VALUES (?,?,?,?,?)";
+												Id_economia,
+												timestamp) VALUES (?,?,?,?,?,?)";
 				$inserccion = $con->prepare($query);
 				$inserccion->bindParam(1,$fotografia, PDO::PARAM_STR);
 				$inserccion->bindParam(2,$Id_documentacion, PDO::PARAM_STR);
 				$inserccion->bindParam(3,$Id_datos_personales, PDO::PARAM_STR);
 				$inserccion->bindParam(4,$Id_datos_generales, PDO::PARAM_STR);
 				$inserccion->bindParam(5,$Id_economia, PDO::PARAM_STR);
+				$inserccion->bindParam(6,$timestamp, PDO::PARAM_STR);
 
 
-				$inserccion->execute() or die ("Error: Problemas al guardar persona");
+				$inserccion->execute() or die ("Error: Problemas al guardar persona".$con->errorCode());
 
 				$Id_persona = $con->lastInsertId();
 				$inserccion = null;

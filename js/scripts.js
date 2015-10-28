@@ -247,19 +247,22 @@
 		'https://api-codigos-postales.herokuapp.com/codigo_postal/'+cp, //se hace llamada a la pagina
 
 			function(data){
-				var json = eval(data); //se convierte en json 
+				var json = JSON.parse(data); //se convierte en json 
 				if (json != false) { //si la consulta tiene algo
 					//remueve todos los option que llegaron a tener algo
-					$("option").remove();
+					$("option#Colonias").remove();
 					//ciclo para extraer todos los datos
 					$.each(json, function(i,valor){
 						console.log(i+" -> " +valor.codigo_postal + ", "+valor.colonia); //mostramos en consola
 						//creacion de los options
-						$('#colonias').last().append("<option value="+valor.colonia+">"+valor.colonia+"</option>");
-					//al input de ciudad le anexa el valor de desactivado
-					$("#ciudad").val(valor.municipio).prop("disabled",true);
+						$('#colonias').last().append("<option id='Colonias' value="+valor.colonia+">"+valor.colonia+"</option>");
+						$("#ciudad").val(valor.municipio);
+						$("#estado").val(valor.estado);
 
-					$("#estado").val(valor.estado).prop("disabled",true);
+					//al input de ciudad le anexa el valor de desactivado
+					//$("#ciudad").val(valor.municipio).prop("disabled",true);
+
+					//$("#estado").val(valor.estado).prop("disabled",true);
 
 					});
 				}

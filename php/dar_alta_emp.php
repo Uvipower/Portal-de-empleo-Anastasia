@@ -7,6 +7,9 @@ include("conexion_login.php");
 	if (isset($_POST['username']) 		&& !empty($_POST['username']) 		&&
 		isset($_POST['password']) 		&& !empty($_POST['password']))
 	{
+
+		//TIMESTAMP
+		$timestamp = date("Y-m-d H:i:s");
 		//ID DE EMPRESA
 		$Id_tipo_usuario = 1;
 
@@ -109,12 +112,15 @@ include("conexion_login.php");
 					$inserccion = null;
 					//INSERCCION DE LA EMPRESA 
 					$query = "INSERT INTO empresa (logotipo, 
-													Id_info_basica_e) VALUES (?,?)";
+													Id_info_basica_e,
+													timestamp) VALUES (?,?,?)";
 					//PREPARA QUERY
 					$inserccion = $con->prepare($query);
 					//CAMBIA LOS VALORES DE LOS ? POR LAS VARIABLES
 					$inserccion->bindParam(1,$logotipo, PDO::PARAM_STR);
 					$inserccion->bindParam(2,$Id_info_basica_e, PDO::PARAM_STR);
+					$inserccion->bindParam(3,$timestamp, PDO::PARAM_STR);
+
 
 					//EJECUTA QUERY
 					$inserccion->execute() or die("Error: Problemas al logotipo e informacion basica");
@@ -138,7 +144,7 @@ include("conexion_login.php");
 					$inserccion->bindParam(4,$Id_tipo_usuario, PDO::PARAM_STR);
 					$inserccion->bindParam(5,$Id_empresa, PDO::PARAM_STR);
 					//EJECUTA QUERY
-					$inserccion->execute() or die("Error: Problemas al ingresar datos del logeo de la empresa");
+					$inserccion->execute() or die("Error: Problemas al ingresar datos del logeo de la empresa".$con->errorCode());
 					//SE BUSCA EL ULTIMO ID INGRESADO
 					$Id_login = $con->lastInsertId();
 					//vacia variable de inserccion

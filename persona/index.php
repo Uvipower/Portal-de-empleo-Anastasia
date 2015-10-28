@@ -17,6 +17,65 @@ if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css" /> 
+	<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+
+	<script type="text/javascript">
+		var timestamp = null;
+		function cargar_push(){
+			//consulta del timestamp en httpush.php
+			$.ajax({
+				async: true,
+				type: "POST",
+				url: "../php/httpush.php",
+				data: "&timestamp="+timestamp,
+				dataType: "html",
+				success: function(data){
+					var json 	= eval("("+data+")");
+					timestamp 	= json.timestamp;
+					if(timestamp == null){
+
+					}
+					else{
+						$.ajax({
+							async: true,
+							type: "POST",
+							url: "../php/empresa_tiempo_real.php",
+							data: "",
+							dataType: "html",
+							success: function (data){
+								//JSON.parse para indicar que lo parse a json
+								//var datos 	= JSON.parse(data);
+
+								//console.log(datos);
+
+								//each para recorrer todo el JSON e imprimiendo en la consola
+
+								/*$.each(datos, function(i,valor){
+									console.log(i+" -> " +valor.Nombre + ", "+valor.Numero);
+									$("#empresas").append("<p>"+i+"->"+valor.Nombre+"</p>");
+								});*/
+
+								
+
+								/*
+								* ACA BUSCAR LA MANERA EN QUE SE IMPRIMA EN EL HTML CON ATRIBUTOS PARA ARRIBR EN MODAL
+								*/
+
+								$("#empresas").html(data);
+								//$("#numeros").html(datos['numero']);
+							}
+						});
+					}
+					setTimeout("cargar_push()",1000);
+				}
+
+			});
+		}
+
+		$(document).ready(function(){
+			cargar_push();
+		});
+	</script>
 </head>
 <body>
 
@@ -42,9 +101,16 @@ if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
 	
 
 	<a href="../php/logout.php">Cerrar sesion</a>
+
+	<br>
+	<br>
+	<h4>TIEMPO REAL</h4>
+	<br>
+	<br>
+	Empresas: <div id="empresas"></div>
+	Numeros: <div id="numeros"></div>
 	
 </body>
-<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="../js/scripts.js">
 
