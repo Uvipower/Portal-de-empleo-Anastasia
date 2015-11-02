@@ -1,3 +1,13 @@
+<?php 
+
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+
+	
+	$id = $_GET['id'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -313,7 +323,7 @@
 		<input type="text" name="ciudad" id="ciudad" placeholder="Ciudad"/>
 
 		<select name="colonia" id="colonias">
-			<option id="colonias" value="" selected disabled>Colonias</option>
+			<option id="Colonias" value="" selected disabled>Colonias</option>
 		</select>
 		<br>
 
@@ -480,3 +490,8 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 </html>
+
+<?php
+}
+
+?>

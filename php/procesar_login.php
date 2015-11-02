@@ -48,6 +48,15 @@
 									//asignacion de viables a sesiones
 									$_SESSION['username'] = $resultado['username'];
 									$_SESSION['acceso'] = $resultado['Id_tipo_usuario'];
+									if ($resultado['Id_tipo_usuario'] == 1) {
+										$_SESSION['Id'] = $resultado['Id_empresa'];
+										
+									}
+									else{
+										$_SESSION['Id'] = $resultado['Id_persona'];
+										
+									}
+									
 
 									echo $_SESSION['acceso']; //lo que recibe el ajax, para saber que pagina ira
 

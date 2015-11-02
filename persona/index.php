@@ -20,61 +20,85 @@ if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
 	<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
 
 	<script type="text/javascript">
-		var timestamp = null;
+		var numero_vacantes 	= 0; // cero registros imprimidos
 		function cargar_push(){
-			//consulta del timestamp en httpush.php
+
 			$.ajax({
+				//ajax tipico
 				async: true,
 				type: "POST",
 				url: "../php/httpush.php",
-				data: "&timestamp="+timestamp,
-				dataType: "html",
-				success: function(data){
-					var json 	= eval("("+data+")");
-					timestamp 	= json.timestamp;
-					if(timestamp == null){
-
-					}
-					else{
+				data: "&numero_vacantes="+numero_vacantes //se idica cuantos registro ya imprimio
+			})
+			.done(function(data){
+				//si el numero imprimidos es menor a los que hay en la base de datos
+				if(numero_vacantes < data){ //validacion, si el numero es mayor httpush no mandara respuesta //se hace doble validacion
+					$.ajax({
+						//se hace consulta de todos los id
+						async: true,
+						type: "POST",
+						url: "../php/vacantes_tiempo_real.php"//////////////// PIDO LOS ID
+					})
+					.done(function(data){
+						var Id_todas_vacantes = JSON.parse(data);
+						var x = Id_todas_vacantes[numero_vacantes].Id_vacante; //se hacede solo al registro indicado
+						//si ya imprimio 3 y en la respuesta dice que son 4, falta 1, y como la variable numero_Vacantes tiene como valor el numero 4
+						//entra al registro de todas las id y busca el subindice 3 y trae toda la infmracion que falta
+						//recorda que se cuenta de 0 a 9 los valores que ya se imprimieron /numero_vacantes/
+						console.log(x); //se hace con la finalidad de ver en que registro va
 						$.ajax({
+							//ajax para traer la informacion de la vacante
 							async: true,
 							type: "POST",
-							url: "../php/empresa_tiempo_real.php",
-							data: "",
-							dataType: "html",
-							success: function (data){
-								//JSON.parse para indicar que lo parse a json
-								//var datos 	= JSON.parse(data);
+							url: "../php/informacion_vacante.php",
+							data: "&Id="+x
+						})
+						.done(function(data){
+							var json = JSON.parse(data);
+							$.each(json, function(i, valor){
+								//se imprime en pantalla 
+							    $("#vacantes").append("<h5>"+valor.titulo+"</h5><h6>"+valor.puesto+"</h6><hr>");
+							    //se inidica que ya se imprmio el registro y se procede a imprimir el siguiente
+								numero_vacantes = numero_vacantes+1
+							});
+						})
+						.fail(function(data){
 
-								//console.log(datos);
-
-								//each para recorrer todo el JSON e imprimiendo en la consola
-
-								/*$.each(datos, function(i,valor){
-									console.log(i+" -> " +valor.Nombre + ", "+valor.Numero);
-									$("#empresas").append("<p>"+i+"->"+valor.Nombre+"</p>");
-								});*/
-
-								
-
-								/*
-								* ACA BUSCAR LA MANERA EN QUE SE IMPRIMA EN EL HTML CON ATRIBUTOS PARA ARRIBR EN MODAL
-								*/
-
-								$("#empresas").html(data);
-								//$("#numeros").html(datos['numero']);
-							}
 						});
-					}
-					setTimeout("cargar_push()",1000);
-				}
+						
 
+						//console.log(data);
+						//alert(numero_vacantes);
+					})
+					.fail(function(data){
+						swal({   
+	            			title: "Vacantes",   
+			            	text: "Hubieron problemas al buscar las vacantes, intente mas tarde",   
+			            	type: "error",   
+			            	confirmButtonText: "Ok!" 
+			            });
+					});
+				}
+				setTimeout("cargar_push()",1000);
+			})
+			.fail(function(data){
+				swal({   
+	            	title: "Vacantes",   
+	            	text: "Hubieron problemas al buscar las vacantes, intente mas tarde",   
+	            	type: "error",   
+	            	confirmButtonText: "Ok!" 
+	            });
 			});
+
 		}
+	
 
 		$(document).ready(function(){
 			cargar_push();
 		});
+
+
+		
 	</script>
 </head>
 <body>
@@ -107,7 +131,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
 	<h4>TIEMPO REAL</h4>
 	<br>
 	<br>
-	Empresas: <div id="empresas"></div>
+	Empresas: <div id="vacantes"></div>
 	Numeros: <div id="numeros"></div>
 	
 </body>

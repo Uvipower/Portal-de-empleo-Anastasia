@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/navbar-style.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
 
 

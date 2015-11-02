@@ -9,28 +9,40 @@
   	$(function(){
         $("#boton_acceso").click(function(){
             $.ajax({
-                    type: "POST",
-                    url: "php/procesar_login.php",
-                    data: $("#acceso_cuenta").serialize(), // Adjuntar los campos del formulario enviado.
-                    success: function(data){  //cambiar esto
-                      	if(data == 1){
-	                        setTimeout(function(){
-	                          $(window).attr('location', 'empresa/index.php');
-	                        }, 100);
-                      	}
-	                    else if(data == 2){
-	                        setTimeout(function(){
-	                          $(window).attr('location', 'persona/index.php');
-	                        }, 100);
-	                    }
-	                    else{
-	                        swal({   title: "Acceso",   text: data,   type: "error",   confirmButtonText: "Ok!" });
-	                    }
-
-                   	}
-
+                type: "POST",
+                url: "php/procesar_login.php",
+                data: $("#acceso_cuenta").serialize()
+            })
+            //Si todo es correcto//
+            .done(function(data){
+            	if(data == 1){
+	                setTimeout(function(){
+	                	$(window).attr('location', 'empresa/index.php');
+	                }, 100);
+               	}
+	            else if(data == 2){
+	                setTimeout(function(){
+	                	$(window).attr('location', 'persona/index.php');
+	                }, 100);
+	            }
+	            else{
+	            	swal({   
+		            	title: "Acceso",   
+		            	text: data,   
+		            	type: "error",   
+		            	confirmButtonText: "Ok!" 
+		            });
+	            }
+            })
+            //Si falla//
+            .fail(function(data){
+	            swal({   
+	            	title: "Acceso",   
+	            	text: data,   
+	            	type: "error",   
+	            	confirmButtonText: "Ok!" 
+	            });
             });
-
             return false; // Evitar ejecutar el submit del formulario.
         });
     });
@@ -133,51 +145,32 @@
 
   //FORM PERSONA AJAX
 
-    	$(function(){
+    $(function(){
         $("#boton_ingreso_persona").click(function(){
-         	
-
-	        	var url = "../php/dar_alta_pers.php"; // El script a dónde se realizará la petición.
-		            $.ajax({
-		                type: "POST",
-		                url: url,
-		                data: $("#form_pers").serialize(), // Adjuntar los campos del formulario enviado.
-		                success: function(data)
-		                {
-		                	
-		                	if (data == "Ha sido dado de alta sactisfactoriamente") {
-		                		swal({   
-				                 	title: "Registro usuario",   
-				                 	text: data,   
-				                 	type: "success",   
-				                 	confirmButtonText: "Ok!" 
-		                		});
-		                	}
-		                	else if(data == "Error:Contraseñas no coinciden"){
-		                		swal({   
-				                 	title: "Registro usuario",   
-				                 	text: data,   
-				                 	type: "error",   
-				                 	confirmButtonText: "Ok!" 
-		                		});
-		                	}
-		                	else{
-		                		swal({   
-				                 	title: "Registro usuario",   
-				                 	text: data,   
-				                 	type: "error",   
-				                 	confirmButtonText: "Ok!" 
-		                		});
-		                	}
-		                	
-
-		                  
-		                }
-
+	        var url = "../php/dar_alta_pers.php"; // El script a dónde se realizará la petición.
+		        $.ajax({
+		            type: "POST",
+		            url: url,
+		            data: $("#form_pers").serialize()
+		        })
+  				.done(function(data){
+  					swal({   
+			            title: "Registro usuario",   
+			            text: data,   
+			            type: "success",   
+			            confirmButtonText: "Ok!" 
+		           	});
+  				})
+  				.fail(function(data){
+  					swal({   
+			        	title: "Registro usuario",   
+			        	text: data,   
+			        	type: "error",   
+			        	confirmButtonText: "Ok!" 
 		            });
-
-		            	return false; // Evitar ejecutar el submit del formulario.
-		        });
+  				});
+		    return false; // Evitar ejecutar el submit del formulario.
+		});
 	});
   //TERMINA FORM PERSONA AJAX
 
@@ -185,59 +178,40 @@
   //EMPIEZA FORMULARIO EMPRESA
   	$(function(){
         $("#boton_ingreso_empresa").click(function(){
-         	
-
-	        	var url = "../php/dar_alta_emp.php"; // El script a dónde se realizará la petición.
-		            $.ajax({
-		                type: "POST",
-		                url: url,
-		                data: $("#form_emp").serialize(), // Adjuntar los campos del formulario enviado.
-		                success: function(data)
-		                {
-		                	
-		                	if (data == "Ha sido dado de alta sactisfactoriamente") {
-		                		swal({   
-				                 	title: "Registro empresa",   
-				                 	text: data,   
-				                 	type: "success",   
-				                 	confirmButtonText: "Ok!" 
-		                		});
-		                	}
-		                	else if(data == "Error:Contraseñas no coinciden"){
-		                		swal({   
-				                 	title: "Registro empresa",   
-				                 	text: data,   
-				                 	type: "error",   
-				                 	confirmButtonText: "Ok!" 
-		                		});
-		                	}
-		                	else{
-		                		swal({   
-				                 	title: "Registro empresa",   
-				                 	text: data,   
-				                 	type: "error",   
-				                 	confirmButtonText: "Ok!" 
-		                		});
-		                	}
-		                	
-
-		                  
-		                }
-
-		            });
-
-		            	return false; // Evitar ejecutar el submit del formulario.
-		        });
+	     	var url = "../php/dar_alta_emp.php"; // El script a dónde se realizará la petición.
+		        $.ajax({
+		            type: "POST",
+		            url: url,
+		            data: $("#form_emp").serialize()
+		        })
+  				.done(function(data){
+  					swal({   
+			            title: "Registro empresa",   
+			            text: data,   
+			            type: "success",   
+			            confirmButtonText: "Ok!" 
+		            	});
+  				})
+  				.fail(function(data){
+  					swal({   
+			        	title: "Registro empresa",   
+			        	text: data,   
+			        	type: "error",   
+			        	confirmButtonText: "Ok!" 
+		             });
+  				});
+		    return false; // Evitar ejecutar el submit del formulario.
+		});
 	});
   //TERMINA FORMULARIO DE EMPRESA
 
   //INDEX PERSONA
-  	$(document).ready(function(){
+  	/*$(document).ready(function(){
 		$("#busqueda").autocomplete({
 			source: "../php/busqueda.php", //pagina donde se mandara la consulta
 			minLength: 1  //tamaño de la cadena
 		});
-	});
+	});*/
 
 	//CODIGOS POSTALES INDEX PERSONA
 
@@ -247,15 +221,15 @@
 		'https://api-codigos-postales.herokuapp.com/codigo_postal/'+cp, //se hace llamada a la pagina
 
 			function(data){
-				var json = JSON.parse(data); //se convierte en json 
+				var json = eval(data); //se convierte en json 
 				if (json != false) { //si la consulta tiene algo
 					//remueve todos los option que llegaron a tener algo
-					$("option#Colonias").remove();
+					$("option#colonias").remove();
 					//ciclo para extraer todos los datos
 					$.each(json, function(i,valor){
 						console.log(i+" -> " +valor.codigo_postal + ", "+valor.colonia); //mostramos en consola
 						//creacion de los options
-						$('#colonias').last().append("<option id='Colonias' value="+valor.colonia+">"+valor.colonia+"</option>");
+						$('#colonias').last().append("<option id='colonias' value="+valor.colonia+">"+valor.colonia+"</option>");
 						$("#ciudad").val(valor.municipio);
 						$("#estado").val(valor.estado);
 
@@ -271,3 +245,35 @@
 		return false;
 	}
 	//TERMINA INDEX PERSONA
+
+	//NUEVA VACANTE
+
+	$(function(){
+        $("#ingreso_vacante").click(function(){
+        	var url = "../../php/dar_alta_vacante.php";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#nueva_vacante").serialize()
+            })
+  			.done(function(data){
+  				swal({   
+			        title: "Nueva vacante",   
+			        text: data,   
+			        type: "success",   
+			        confirmButtonText: "Ok!" 
+		       	});
+  			})
+  			.fail(function(data){
+  				swal({   
+			    	title: "Nueva vacante",   
+			    	text: data,   
+			    	type: "error",   
+			    	confirmButtonText: "Ok!" 
+		        });
+  			});
+
+	    return false; // Evitar ejecutar el submit del formulario.
+		});
+	});
+  //TERMINA NUEVA VACANTE

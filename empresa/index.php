@@ -3,11 +3,9 @@
 session_start();
 //checa que la sesion tenga algo, tambien la contraseña
 //solo pueden entrar los que son administrativos
-if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
+if (isset($_SESSION['username']) && isset($_SESSION['acceso']) && isset($_SESSION['Id'])){
 
 	if ($_SESSION['acceso'] == 1){
-
-
 
 	?>
 
@@ -20,6 +18,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['acceso'])){
 <body>
 
 	<h4 align="center">Empresa</h4>
+
+
+	<a href="vacantes/index.php">Vacantes</a>
 	
 
 	<a href="../php/logout.php">Cerrar sesion</a>
