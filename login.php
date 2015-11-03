@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php $id = "login";?>
 <head>
 	<meta charset="UTF-8">
 	<title>Iniciar Sesión</title>
@@ -59,6 +60,7 @@
 		</form>
 		
 	</div>
+	<?php include("forms/modalRegistro.php");?>
 	<br>
 	</main>
 <!-- ======================= Pie de Pagina ============================= -->

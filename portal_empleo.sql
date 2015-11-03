@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2015 a las 18:09:29
+-- Tiempo de generación: 02-11-2015 a las 22:07:57
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `domicilio_empresa` (
   `estado` varchar(45) DEFAULT NULL,
   `ciudad` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `domicilio_empresa`
@@ -137,7 +137,8 @@ INSERT INTO `domicilio_empresa` (`Id_domicilio_empresa`, `estado`, `ciudad`, `di
 (19, 'Quintana Roo', 'OthÃ³n P. Blanco', 'Morelos'),
 (20, 'Oaxaca', 'San Miguel Panixtlahuaca', 'Plutarco'),
 (21, 'Oaxaca', 'San Miguel Panixtlahuaca', 'Plutarco'),
-(22, 'Oaxaca', 'San Miguel Panixtlahuaca', 'Plutarco');
+(22, 'Oaxaca', 'San Miguel Panixtlahuaca', 'Plutarco'),
+(23, 'Quintana Roo', 'OthÃ³n P. Blanco', 'Plutarco');
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `logotipo` varchar(45) DEFAULT NULL,
   `Id_info_basica_e` int(11) NOT NULL,
   `timestamp` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `empresa`
@@ -214,7 +215,8 @@ INSERT INTO `empresa` (`Id_empresa`, `logotipo`, `Id_info_basica_e`, `timestamp`
 (18, NULL, 18, '2015-10-28 00:03:35'),
 (19, NULL, 19, '2015-10-28 14:09:09'),
 (20, NULL, 20, '2015-10-28 14:35:36'),
-(21, NULL, 21, '2015-10-28 15:43:35');
+(21, NULL, 21, '2015-10-28 15:43:35'),
+(22, NULL, 22, '2015-11-02 22:05:06');
 
 -- --------------------------------------------------------
 
@@ -253,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `info_basica_e` (
   `fundacion` date DEFAULT NULL,
   `Id_domicilio_empresa` int(11) NOT NULL,
   `Id_responsable` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `info_basica_e`
@@ -272,7 +274,8 @@ INSERT INTO `info_basica_e` (`Id_info_basica_e`, `nombre`, `numero`, `giro`, `ra
 (18, 'Windows2', '983000000', 'Comida', 'Chidos', '2007-12-12', 19, 19),
 (19, 'Prueba', '98000999888', 'Menos', 'Nose', '9231-09-22', 20, 20),
 (20, 'Anastasia', '98000999888', 'Menos', 'Nose', '9231-09-22', 21, 21),
-(21, 'Anastasia1', '98000999888', 'Menos', 'Nose', '9231-09-22', 22, 22);
+(21, 'Anastasia1', '98000999888', 'Menos', 'Nose', '9231-09-22', 22, 22),
+(22, 'NUEVAEMPRESA', '9988000', 'siempre', 'algo', '0000-00-00', 23, 23);
 
 -- --------------------------------------------------------
 
@@ -300,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `Id_tipo_usuario` int(11) NOT NULL,
   `Id_empresa` int(11) DEFAULT NULL,
   `Id_persona` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `login`
@@ -320,7 +323,8 @@ INSERT INTO `login` (`Id`, `username`, `password`, `correo`, `Id_tipo_usuario`, 
 (20, 'windows2', 'da918b6a9ca684c9055b7e91207869ed', 'windows2@gmail.com', 1, 18, NULL),
 (21, 'prueba', 'c893bad68927b457dbed39460e6afd62', 'prueba@prueba', 1, 19, NULL),
 (22, 'anastasia', 'fa17f85c91125ebe136de0a5fdd47951', 'anastasia@prueba', 1, 20, NULL),
-(23, 'anastasia1', 'efc7858607f8c2da7c1a44572be9e08b', 'anastasia1@prueba', 1, 21, NULL);
+(23, 'anastasia1', 'efc7858607f8c2da7c1a44572be9e08b', 'anastasia1@prueba', 1, 21, NULL),
+(24, 'new_emp', 'acfcafefcecf0d3df701209461def746', 'new_emp@gmai.com', 1, 22, NULL);
 
 -- --------------------------------------------------------
 
@@ -391,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `responsable` (
   `correo` varchar(45) DEFAULT NULL,
   `numero` varchar(45) DEFAULT NULL,
   `puesto` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `responsable`
@@ -410,7 +414,8 @@ INSERT INTO `responsable` (`Id_responsable`, `nombre`, `correo`, `numero`, `pues
 (19, 'windows2', 'windows2@gmail.com', '9831234567', 'JEFE'),
 (20, 'Jowel', 'jowel@gmailcom', '9809091', 'Achichinle'),
 (21, 'anastasia', 'anastasia@gmailcom', '9809091', 'Achichinle'),
-(22, 'anastasia1', 'anastasia1@gmailcom', '9809091', 'Achichinle');
+(22, 'anastasia1', 'anastasia1@gmailcom', '9809091', 'Achichinle'),
+(23, 'fulano', 'fulansio@gmaisl.', '90100333', 'fulansio');
 
 -- --------------------------------------------------------
 
@@ -465,17 +470,18 @@ CREATE TABLE IF NOT EXISTS `vacantes` (
   `sueldo` int(11) DEFAULT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
   `estatus` tinyint(1) DEFAULT NULL,
+  `timestamp` datetime NOT NULL,
   `Id_empresa` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `vacantes`
 --
 
-INSERT INTO `vacantes` (`Id_vacante`, `titulo`, `puesto`, `horario1`, `horario2`, `sueldo`, `descripcion`, `estatus`, `Id_empresa`) VALUES
-(1, 'Trabaja con nosotros', 'Trabajador general', '09:00', '15:00', 1800, 'Empleado general uso de bla bla', 1, 9),
-(2, 'Prueb', 'Probador', '10:10', '23:59', 1500, 'peurbea', 1, 19),
-(3, 'VENDE TORTILLAS', 'VENDEDOR', '09:00', '15:00', 1200, 'ALGO POR ALLA', 1, 9);
+INSERT INTO `vacantes` (`Id_vacante`, `titulo`, `puesto`, `horario1`, `horario2`, `sueldo`, `descripcion`, `estatus`, `timestamp`, `Id_empresa`) VALUES
+(16, '1', '1', '00:12', '00:00', 9000, '0000prueba', 1, '2015-11-02 02:04:59', 9),
+(17, '2', '2', '00:12', '00:00', 9000, '0000prueba', 1, '2015-11-02 02:05:05', 9),
+(18, '3', '3', '00:12', '00:00', 9000, '0000prueba', 1, '2015-11-02 02:17:28', 9);
 
 --
 -- Índices para tablas volcadas
@@ -618,7 +624,7 @@ MODIFY `Id_documentacion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT de la tabla `domicilio_empresa`
 --
 ALTER TABLE `domicilio_empresa`
-MODIFY `Id_domicilio_empresa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `Id_domicilio_empresa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `domicilio_persona`
 --
@@ -633,7 +639,7 @@ MODIFY `Id_economia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-MODIFY `Id_empresa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+MODIFY `Id_empresa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `estudios`
 --
@@ -643,7 +649,7 @@ MODIFY `Id_estudio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT de la tabla `info_basica_e`
 --
 ALTER TABLE `info_basica_e`
-MODIFY `Id_info_basica_e` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+MODIFY `Id_info_basica_e` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `jefes`
 --
@@ -653,7 +659,7 @@ MODIFY `Id_jefe` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `login`
 --
 ALTER TABLE `login`
-MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
@@ -673,7 +679,7 @@ MODIFY `Id_referencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT de la tabla `responsable`
 --
 ALTER TABLE `responsable`
-MODIFY `Id_responsable` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `Id_responsable` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
@@ -688,7 +694,7 @@ MODIFY `Id_trabajo_anterior` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `vacantes`
 --
 ALTER TABLE `vacantes`
-MODIFY `Id_vacante` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `Id_vacante` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- Restricciones para tablas volcadas
 --
